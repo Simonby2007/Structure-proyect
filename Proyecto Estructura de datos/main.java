@@ -62,6 +62,7 @@ public class main {
                 System.out.println("PRIMER VALOR: " + ValorElegido);
                 System.out.println("¿Cuánto desea ingresar?");
                 int montoTemp = scanner.nextInt();
+                int montoTempTotal = 0;
                 while (montoTemp > monto) 
                     {
                     System.out.println("Error: Ingrese un valor menor o igual al monto total");
@@ -73,6 +74,7 @@ public class main {
                 {
                     int indice2 = aleatorio.nextInt(numerosApuesta.length);
                     int ValorElegido2 = numerosApuesta[indice2];
+                    montoTempTotal = montoTempTotal + montoTemp;
                     System.out.println("¿El siguiente numero será:");
                     System.out.println("MAYOR: 1.)");
                     System.out.println("MENOR: 2.)");
@@ -92,6 +94,8 @@ public class main {
                             }
                             else
                             {
+                                monto = monto + montoTemp;
+                                monto = monto - montoTempTotal;
                                 System.out.println("Perdiste! Monto actual -> " + monto + "$");
                                 if (monto == 0)
                                 {
@@ -112,6 +116,8 @@ public class main {
                                 ValorElegido = ValorElegido2;
                             }else
                             {
+                                monto = monto + montoTemp;
+                                monto = monto - montoTempTotal;
                                 System.out.println("Perdiste! Monto actual -> " + monto + "$");
                                 if (monto == 0)
                                 {
@@ -136,4 +142,3 @@ public class main {
         scanner.close();
     }
 }
-
