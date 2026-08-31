@@ -5,6 +5,7 @@ public class main {
     {
     Scanner scanner = new Scanner (System.in);
     boolean salir = false;
+    boolean salirSimulador = false;
     String ingreso = "";
     while (!salir) 
         //INGRESO DEL USUARIO
@@ -47,6 +48,7 @@ public class main {
         while (!salir) 
             {
             //CREACIÓN DEL VECTOR GENERADOR DE NUMEROS ALEATORIOS
+                salirSimulador = false;
                 int [] numerosApuesta = new int[100];
                 int a = 0;
                 for (int i = 1; i <= 100; i++)
@@ -67,15 +69,14 @@ public class main {
                     }
                 monto = monto - montoTemp;
                 //EMPEZAR ALGORITMO DE COMPARACIÓN
-                while (!salir)
+                while (!salirSimulador)
                 {
                     int indice2 = aleatorio.nextInt(numerosApuesta.length);
                     int ValorElegido2 = numerosApuesta[indice2];
                     System.out.println("¿El siguiente numero será:");
                     System.out.println("MAYOR: 1.)");
                     System.out.println("MENOR: 2.)");
-                    System.out.println("Ingresar nuevo valor para apostar: 3.)");
-                    System.out.println("salir: exit");
+                    System.out.println("salir del simulador: exit");
                     String comparacion = scanner.next();
                     switch (comparacion) 
                     {
@@ -106,7 +107,6 @@ public class main {
                             System.out.println("SEGUNDO VALOR: " + ValorElegido2);
                             if (ValorElegido2 < ValorElegido)
                             {
-                                montoTemp = montoTemp * 2;
                                 monto = monto + montoTemp;
                                 System.out.println("Ganaste! Monto actual -> " + monto + "$");
                                 ValorElegido = ValorElegido2;
@@ -121,20 +121,9 @@ public class main {
                             }
                             ValorElegido = ValorElegido2;
                             break;
-                        case "3":
-                            monto = monto + montoTemp;
-                            System.out.println("Ingrese nuevo valor para apostar:");
-                            montoTemp = scanner.nextInt();
-                            while (montoTemp > monto) 
-                                {
-                                System.out.println("Error: Ingrese un valor menor o igual al monto total");
-                                montoTemp = scanner.nextInt();
-                                }
-                            monto = monto - montoTemp;
-                            break;
                         case "exit":
-                            salir = true;
-                            System.out.println("Gracias por usar el simulador de inversiones");
+                            monto = monto + montoTemp;
+                            salirSimulador = true;
                             break;
                         default:
                             System.out.println("Error: Ingrese un valor valido");
