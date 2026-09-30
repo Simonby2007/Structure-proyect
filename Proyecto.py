@@ -1,4 +1,5 @@
 import random
+import matplotlib as ptl
 
 salir = False
 ingreso = ""
