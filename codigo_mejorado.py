@@ -173,10 +173,10 @@ if not salir:
     numeros.append(valor_elegido)
     actualizar_grafica("blue")
 
-    monto_temporal = pedir_apuesta(monto, "¿Cuánto desea apostar?: ")
+    monto_temporal = pedir_apuesta(monto, "¿Cuánto desea invertir?: ")
 
     while not salir:
-        print("\nMonto actual: " + str(monto) + "$ | Apuesta: " + str(monto_temporal) + "$")
+        print("\nMonto actual: " + str(monto) + "$ | Monto invertido: " + str(monto_temporal) + "$")
         print("El siguiente número será: ")
         print("MAYOR: 1")
         print("MENOR: 2")
