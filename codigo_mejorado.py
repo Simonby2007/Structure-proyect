@@ -31,10 +31,10 @@ class ListaDoblementeEnlazada:
             print("El historial está vacío.")
             return
 
-        print("\n--- HISTORIAL DE APUESTAS ---")
+        print("\n--- HISTORIAL DE INVERSIÓN ---")
         while actual != self.cola:
             fila = actual.informacion
-            print(f"Ronda: {fila[0]} | Ant: {fila[1]} | Nue: {fila[2]} | Apuesta: {fila[3]} | Res: {fila[4]} | Saldo: {fila[5]}")
+            print(f"Ronda: {fila[0]} | Ant: {fila[1]} | Nue: {fila[2]} | Invertido: {fila[3]} | Res: {fila[4]} | Saldo: {fila[5]}")
             actual = actual.siguiente
 
     def mostrar_regreso(self):
@@ -46,7 +46,7 @@ class ListaDoblementeEnlazada:
         print("\n--- HISTORIAL INVERTIDO ---")
         while actual != self.cabeza:
             fila = actual.informacion
-            print(f"Ronda: {fila[0]} | Ant: {fila[1]} | Nue: {fila[2]} | Apuesta: {fila[3]} | Res: {fila[4]} | Saldo: {fila[5]}")
+            print(f"Ronda: {fila[0]} | Ant: {fila[1]} | Nue: {fila[2]} | Inversión: {fila[3]} | Res: {fila[4]} | Saldo: {fila[5]}")
             actual = actual.anterior
 
     def eliminar(self, num_ronda):
@@ -114,7 +114,7 @@ def mostrar_resumen():
 
     while actual != historial.cola:
         fila = actual.informacion
-        print(f"Ronda: {fila[0]:<4} | Ant: {fila[1]:<3} | Nue: {fila[2]:<3} | Apuesta: {fila[3]:<5} | Res: {fila[4]:<7} | Saldo: {fila[5]}")
+        print(f"Ronda: {fila[0]:<4} | Ant: {fila[1]:<3} | Nue: {fila[2]:<3} | Inversión: {fila[3]:<5} | Res: {fila[4]:<7} | Saldo: {fila[5]}")
         total += 1
         if fila[4] == "GANO":
             ganadas += 1
@@ -180,7 +180,7 @@ if not salir:
         print("El siguiente número será: ")
         print("MAYOR: 1")
         print("MENOR: 2")
-        print("Cambiar apuesta: 3")
+        print("Cambiar monto invertido: 3")
         print("Ver menú historial: 4")
         print("Salir: exit")
 
@@ -222,11 +222,11 @@ if not salir:
                 print("No tienes dinero para seguir jugando")
                 salir = True
             elif monto < monto_temporal:
-                print("Tu monto es menor a tu apuesta, ingresa una nueva")
+                print("Tu monto total es menor a tu monto elegido, ingresa una nueva")
                 monto_temporal = pedir_apuesta(monto, "Nueva apuesta: ")
 
         elif comparacion == "3":
-            monto_temporal = pedir_apuesta(monto, "Ingrese nuevo valor para apostar: ")
+            monto_temporal = pedir_apuesta(monto, "Ingrese nuevo valor para invertir: ")
 
         elif comparacion == "4":
             opc_hist = ""
