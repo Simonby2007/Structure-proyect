@@ -30,6 +30,16 @@ class ListaDoblementeEnlazada:
         return (f"Ronda: {fila[0]} | Ant: {fila[1]} | Nue: {fila[2]} | "
                 f"Invertido: {fila[3]} | Res: {fila[4]} | Saldo: {fila[5]}")
 
+    def a_filas(self):
+        """Devuelve las filas del historial en una lista de Python (de la
+        más antigua a la más reciente). Sirve para alimentar al árbol."""
+        filas = []
+        actual = self.cabeza.siguiente
+        while actual != self.cola:
+            filas.append(actual.informacion)
+            actual = actual.siguiente
+        return filas
+
     def mostrar(self):
         actual = self.cabeza.siguiente
         if actual == self.cola:

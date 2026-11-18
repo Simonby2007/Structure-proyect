@@ -2,6 +2,7 @@ import math
 import random
 
 import Teclado
+from ArbolBinario import CRITERIOS, ordenar_historial
 from Entradas import pedir_entero, pedir_inversion
 from Grafica import Grafica
 from ListaDoblementeEnlazada import ListaDoblementeEnlazada
@@ -147,12 +148,13 @@ class Partida:
     # ---------- Menú del historial ----------
     def _menu_historial(self):
         opcion = ""
-        while opcion != "4":
+        while opcion != "5":
             print("\n--- MENÚ HISTORIAL ---")
             print("1. Ver historial completo")
             print("2. Ver historial al revés")
             print("3. Eliminar una ronda por número")
-            print("4. Volver al juego")
+            print("4. Ordenar historial (árbol binario)")
+            print("5. Volver al juego")
             opcion = input("Elija una opción: ")
 
             if opcion == "1":
@@ -163,6 +165,28 @@ class Partida:
                 num = pedir_entero("Ingrese el número de ronda a eliminar: ")
                 self.historial.eliminar(num)
             elif opcion == "4":
+                self._menu_ordenar()
+            elif opcion == "5":
                 print("Volviendo al juego...")
             else:
                 print("Error: Opción inválida")
+
+    def _menu_ordenar(self):
+        """Muestra el historial ordenado con un árbol binario de búsqueda."""
+        filas = self.historial.a_filas()
+        if not filas:
+            print("El historial está vacío.")
+            return
+
+        print("\n--- ORDENAR HISTORIAL ---")
+        for clave, (nombre, _, _) in CRITERIOS.items():
+            print(f"{clave}. {nombre}")
+        criterio = input("Ordenar por: ")
+
+        if criterio not in CRITERIOS:
+            print("Error: Opción inválida")
+            return
+
+        print(f"\n--- {CRITERIOS[criterio][0].upper()} ---")
+        for fila in ordenar_historial(filas, criterio):
+            print(self.historial._linea(fila))
